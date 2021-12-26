@@ -14,7 +14,7 @@ export class Historial {
   @PrimaryGeneratedColumn({ type: 'int' })
   id: number;
 
-  @Column({type:'varchar'})
+  @Column({name:"historial_path",type:'varchar'})
   historialPath: string;
 
   @CreateDateColumn({

@@ -13,7 +13,7 @@ export class Paciente {
   @PrimaryGeneratedColumn({ type: 'int' })
   id: number;
 
-  @Column({ name: 'cedula', type: 'varchar', unique: true })
+  @Column({ name: 'cedula', type: 'varchar'})
   cedula: string;
 
   @Column({ name: 'nombre_titular', type: 'varchar' })
