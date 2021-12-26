@@ -13,7 +13,7 @@ export class Paciente {
   @PrimaryGeneratedColumn({ type: 'int' })
   id: number;
 
-  @Column({ name: 'cedula', type: 'varchar' })
+  @Column({ name: 'cedula', type: 'varchar', unique: true })
   cedula: string;
 
   @Column({ name: 'nombre_titular', type: 'varchar' })
@@ -38,7 +38,10 @@ export class Paciente {
   edadMascota: number;
 
   @Column({ name: 'comentarios', type: 'varchar' })
-  comentarios: string;  
+  comentarios: string;
+
+  @Column({ name: 'paciente_dir_path', type: 'varchar' })
+  pacienteDirPath: string;
 
   @CreateDateColumn({
     name: 'created_at',

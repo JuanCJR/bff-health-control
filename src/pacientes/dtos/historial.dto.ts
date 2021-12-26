@@ -1,12 +1,12 @@
 import { ApiProperty, PartialType } from '@nestjs/swagger';
-import { IsNotEmpty, IsNumber, IsPositive, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsOptional, IsPositive, IsString } from 'class-validator';
 
 export class CreateHistorialDto {
 
   @ApiProperty()
   @IsString()
   @IsNotEmpty()
-  historialPath:string;
+  informe:string;
 
   @ApiProperty()
   @IsNumber()

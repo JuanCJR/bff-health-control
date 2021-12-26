@@ -31,7 +31,9 @@ export class Historial {
   })
   updateAt: Date;
 
-  @ManyToOne(() => Paciente, (paciente) => paciente.historiales)
+  @ManyToOne(() => Paciente, (paciente) => paciente.historiales, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({name:'paciente_id'})
   paciente: Paciente;
 }
