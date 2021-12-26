@@ -13,7 +13,7 @@ export class Paciente {
   @PrimaryGeneratedColumn({ type: 'int' })
   id: number;
 
-  @Column({ name: 'cedula', type: 'varchar', unique: true })
+  @Column({ name: 'cedula', type: 'varchar'})
   cedula: string;
 
   @Column({ name: 'nombre_titular', type: 'varchar' })
@@ -45,14 +45,14 @@ export class Paciente {
 
   @CreateDateColumn({
     name: 'created_at',
-    type: 'timestamptz',
+    type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP',
   })
   createdAt: Date;
 
   @UpdateDateColumn({
     name: 'updated_at',
-    type: 'timestamptz',
+    type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP',
   })
   updateAt: Date;
