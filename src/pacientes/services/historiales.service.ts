@@ -24,7 +24,10 @@ export class HistorialesService {
     if (!historial) {
       throw new NotFoundException(`Historial ${id} no encontrado`);
     }
-    return historial;
+
+    const data = fs.readFileSync(historial.historialPath, 'utf-8');
+
+    return {...historial,data};
   }
 
   async create(payload: CreateHistorialDto) {
@@ -32,7 +35,11 @@ export class HistorialesService {
     const newhistorial = this.historialRepo.create();
 
     const date = new Date();
-    const informeName = `${paciente.id}-${date.toISOString()}.html`;
+    const informeNameDate = `${date.getFullYear()}${
+      date.getMonth() + 1
+    }${date.getDate()}${date.getHours()}${date.getMinutes()}`;
+
+    const informeName = `${paciente.id}-${informeNameDate}.txt`;
     newhistorial.historialPath = path.join(
       paciente.pacienteDirPath,
       informeName,
@@ -49,7 +56,7 @@ export class HistorialesService {
     if (!historial) {
       throw new NotFoundException(`Historial ${id} no encontrado`);
     }
- 
+
     if (changes.informe) {
       fs.unlinkSync(historial.historialPath);
       fs.writeFileSync(historial.historialPath, changes.informe);
@@ -63,7 +70,7 @@ export class HistorialesService {
     if (!historial) {
       throw new NotFoundException(`Historial ${id} no encontrado`);
     }
-    fs.unlinkSync((historial).historialPath);
+    fs.unlinkSync(historial.historialPath);
 
     return await this.historialRepo.delete(id);
   }

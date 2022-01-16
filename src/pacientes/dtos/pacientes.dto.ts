@@ -1,5 +1,5 @@
 import { ApiProperty, PartialType } from "@nestjs/swagger"
-import { IsNotEmpty, IsNumber, IsString, } from "class-validator";
+import { IsNotEmpty, IsNumber, IsString, IsOptional } from "class-validator";
 
 export class CreatePacienteDto {
     @ApiProperty()
@@ -48,4 +48,53 @@ export class CreatePacienteDto {
     readonly comentarios:string;
 }
 
-export class UpdatePacienteDto extends PartialType(CreatePacienteDto) {}
+export class UpdatePacienteDto  {
+
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    @IsOptional()
+    readonly direccion: string;
+
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    @IsOptional()
+    readonly nombreTitular:string;
+
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    @IsOptional()
+    readonly telefono:string;
+
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    @IsOptional()
+    readonly nombreMascota: string;
+
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    @IsOptional()
+    readonly razaMascota:string;
+
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    @IsOptional()
+    readonly tipoMascota:string;
+
+    @ApiProperty()
+    @IsNumber()
+    @IsNotEmpty()
+    @IsOptional()
+    readonly edadMascota: number;
+
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    @IsOptional()
+    readonly comentarios:string;
+}

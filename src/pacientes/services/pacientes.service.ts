@@ -48,17 +48,17 @@ export class PacientesService {
     }
     this.pacienteRepo.merge(paciente, changes);
 
-    //Si se actualiza la cedula, se actualiza el nombre del directorio del paciente
-    if (changes.cedula) {
-      const dirArray = paciente.pacienteDirPath.split('/');
-      const dirArrayLength = dirArray.length-1;
-      dirArray[dirArrayLength] = changes.cedula;
+    // //Si se actualiza la cedula, se actualiza el nombre del directorio del paciente
+    // if (changes.cedula) {
+    //   const dirArray = paciente.pacienteDirPath.split('/');
+    //   const dirArrayLength = dirArray.length-1;
+    //   dirArray[dirArrayLength] = changes.cedula;
 
-      const newDir = dirArray.toString().replace(/,/g, '/');
-      console.log(newDir)
-      fs.renameSync(paciente.pacienteDirPath, newDir);
-      paciente.pacienteDirPath = newDir;
-    }
+    //   const newDir = dirArray.toString().replace(/,/g, '/');
+    //   console.log(newDir)
+    //   fs.renameSync(paciente.pacienteDirPath, newDir);
+    //   paciente.pacienteDirPath = newDir;
+    // }
     return await this.pacienteRepo.save(paciente);
   }
 
