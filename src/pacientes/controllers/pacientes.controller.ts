@@ -1,25 +1,26 @@
 import {
-    Controller,
-    Get,
-    Param,
-    ParseIntPipe,
-    Post,
-    Body,
-    Put,
-    Delete,
-  } from '@nestjs/common';
+  Controller,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+  Body,
+  Put,
+  Delete,
+  Query,
+} from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
 import { PacientesService } from '../services/pacientes.service';
-import { CreatePacienteDto,UpdatePacienteDto } from '../dtos/pacientes.dto';
+import { CreatePacienteDto, UpdatePacienteDto } from '../dtos/pacientes.dto';
 
 @ApiTags('pacientes')
 @Controller('pacientes')
 export class PacientesController {
   constructor(private pacientesServices: PacientesService) {}
   @Get()
-  findAll() {
-    return this.pacientesServices.find();
+  findAll(@Query('cedula') cedula: string) {
+    return this.pacientesServices.find(cedula);
   }
 
   @Get(':id')

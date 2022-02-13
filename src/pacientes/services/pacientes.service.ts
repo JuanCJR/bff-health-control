@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { createDir } from 'src/common/createDir';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 import * as rimraf from 'rimraf';
 import * as fs from 'fs';
 
@@ -14,8 +14,15 @@ export class PacientesService {
     @InjectRepository(Paciente) private pacienteRepo: Repository<Paciente>,
   ) {}
 
-  async find() {
-    return await this.pacienteRepo.find();
+  async find(cedula: string) {
+    console.log(cedula);
+    if (cedula) {
+      return await this.pacienteRepo.find({
+        cedula: Like(`${cedula}%`),
+      });
+    } else {
+      return await this.pacienteRepo.find();
+    }
   }
 
   async findById(id: number) {
